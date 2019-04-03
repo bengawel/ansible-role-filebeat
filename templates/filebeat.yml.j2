@@ -1,7 +1,7 @@
 filebeat:
   # List of prospectors to fetch data.
-  prospectors:
-    {{ filebeat_prospectors | to_json }}
+  inputs:
+    {{ filebeat_inputs | to_json }}
 
 # Configure what outputs to use when sending the data collected by the beat.
 # Multiple outputs may be used.
@@ -92,13 +92,13 @@ output:
   ### Logstash as output
   logstash:
     # The Logstash hosts
-    hosts: {{ filebeat_output_logstash_hosts | to_json }}
+    hosts: {{ filebeat_output_logstash_hosts }}
 
     # Number of workers per Logstash host.
     #worker: 1
 
     # Optional load balance the events between the Logstash hosts
-    #loadbalance: true
+    loadbalance: true
 
     # Optional index name. The default index name depends on the each beat.
     # For Packetbeat, the default is set to packetbeat, for Topbeat
